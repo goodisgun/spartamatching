@@ -1,2 +1,11 @@
-package com.matching.dto;public class LoginRequestDto {
+package com.matching.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class LoginRequestDto {
+    private String username;
+    private String password;
 }
