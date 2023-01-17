@@ -9,8 +9,6 @@ import com.matching.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
@@ -50,14 +48,8 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public LoginResponseDto clientLogin(LoginRequestDto loginRequestDto, HttpServletResponse response) {
-        if(foundAdmin.isPresent()) {
-            return adminLogin(loginRequestDto, response);
-        }
-
         String username = loginRequestDto.getUsername();
         String password = loginRequestDto.getPassword();
-
-        Optional<Admin> foundAdmin = adminRepository.findByUsername(username);
 
         Client client = clientRepository.findByUsername(username).orElseThrow(
                 () -> new NullPointerException("회원을 찾을 수 없습니다.")
@@ -90,7 +82,7 @@ public class UserService {
 
     @Transactional
     public LogoutResponseDto logout(HttpServletResponse response) {
-        //response. 추후에 수정
+        //response.추후에 수정
         return new LogoutResponseDto("로그아웃성공!");
     }
 }
