@@ -5,7 +5,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 
-public interface Timestamped {
+public class Timestamped {
 
     @CreatedDate //생성시간 저장
     private LocalDateTime createdAt;
